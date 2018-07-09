@@ -31,8 +31,13 @@ const editor = monaco.editor.create(document.getElementById("container")!, {
 });
 
 // create the web socket
-const webSocket = createWebSocket(url);
 const url = 'ws://localhost:2089';
+const daddySocket = createWebSocket(url);
+const webSocket = Object.create(daddySocket);
+// add Content-Length header to messages before sending
+webSocket.send = function(message: string) {
+    Object.getPrototypeOf(this).send('Content-Length: ' + message.length + '\r\n\r\n' + message);
+}
 // listen when the web socket is opened
 listen({
     webSocket,
