@@ -3,7 +3,11 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "lib",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "vscode-ws-jsonrpc": ["node_modules/vscode-ws-jsonrpc"],
+            "vscode-ws-jsonrpc/*": ["node_modules/vscode-ws-jsonrpc/*"]
+        }
     },
     "include": [
         "src"
